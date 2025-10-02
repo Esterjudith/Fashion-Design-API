@@ -2,7 +2,7 @@ const mongodb = require('../connect/db');
 const { ObjectId } = require('mongodb').ObjectId;
 
 // Get all collections in the database
-const getAll = async (req, res) => {
+const getAllCollections = async (req, res) => {
   // #swagger.tags = ['Collections']
   try {
     const result = await mongodb.getDatabase().db().collection('collections').find();
@@ -14,7 +14,7 @@ const getAll = async (req, res) => {
 };
 
 // Get a specific collection by ID
-const getById = async (req, res) => {
+const getCollectionById = async (req, res) => {
   // #swagger.tags = ['Collections']
     try {
         if (!ObjectId.isValid(req.params.id)) {
@@ -97,8 +97,8 @@ const deleteCollection = async (req, res) => {
 };
 
 module.exports = {
-  getAll,
-  getById,
+  getAllCollections,
+  getCollectionById,
   createCollection,
   updateCollection,
   deleteCollection

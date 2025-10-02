@@ -3,10 +3,10 @@ const router = express.Router();
 const collectionsController = require('../controllers/collectionsController');
 
 // Route to get all collections
-router.get('/', collectionsController.getAll);
+router.get('/', collectionsController.getAllCollections);
 
 // Route to get a specific collection by ID
-router.get('/:id', collectionsController.getById);
+router.get('/:id', collectionsController.getCollectionById);
 
 // Route to create a new collection
 router.post('/', collectionsController.createCollection);
