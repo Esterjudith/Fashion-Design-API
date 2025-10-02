@@ -13,6 +13,7 @@ app.use('/', router)
 
 connectDB();
 
+
 app.listen(port, () => {
     console.log(`Listen on port ${port}`);
 })

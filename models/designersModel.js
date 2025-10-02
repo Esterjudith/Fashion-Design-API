@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const designerSchema = new mongoose.Schema({
     name: {
         type:String,
-        require: true
+        required: true
     },
     birthYear: {
         type: Number
@@ -29,6 +29,6 @@ const designerSchema = new mongoose.Schema({
     }
 })
 
-const Designer = new mongoose.model('Designer', designerSchema);
+const Designer = mongoose.model('Designer', designerSchema);
 
 module.exports = {Designer};
