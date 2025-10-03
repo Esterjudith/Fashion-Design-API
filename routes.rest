@@ -37,3 +37,4 @@ Content-Type: application/json
 
 ### delete a collection by ID
 DELETE http://localhost:3000/collections/68df3ddab4ad52ce056ad464
+
