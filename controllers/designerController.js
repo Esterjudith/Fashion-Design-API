@@ -11,7 +11,25 @@ const getAllDesigners = async (req, res) => {
 }
 
 const createDesigner = async (req, res) => {
-     // #swagger.tags = ['Designers']
+    /* 
+    #swagger.tags = ['Designers']
+    #swagger.description = 'Create a new fashion designer'
+    #swagger.parameters['body'] = {
+      in: 'body',
+      required: true,
+      description: 'Designer data',
+      schema: {
+        name: "Coco Chanel",
+        birthYear: 1883,
+        nationality: "French",
+        style: "Timeless elegance",
+        famousFor: "The little black dress, Chanel No.5",
+        activeYears: "1909–1971",
+        website: "https://www.chanel.com",
+        awards: ["Neiman Marcus Fashion Award (1957)"]
+      }
+    }
+  */
     try {
         const designer = new Designer(req.body);
         await designer.save();
@@ -34,7 +52,25 @@ const getDesignerById = async (req, res) => {
 }
 
 const updateDesigner = async (req, res) => {
-    // #swagger.tags = ['Designers']
+    /* 
+    #swagger.tags = ['Designers']
+    #swagger.description = 'Update an existing designer'
+    #swagger.parameters['body'] = {
+      in: 'body',
+      required: true,
+      description: 'Updated designer data',
+      schema: {
+        name: "Giorgio Armani",
+        birthYear: 1934,
+        nationality: "Italian",
+        style: "Luxury menswear",
+        famousFor: "Soft-shouldered suits",
+        activeYears: "1975–present",
+        website: "https://www.armani.com",
+        awards: ["CFDA International Award (1983)"]
+      }
+    }
+  */
     const { id } = req.params;
     try {
         const designer = await Designer.findByIdAndUpdate(id, req.body, {

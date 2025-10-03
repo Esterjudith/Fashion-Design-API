@@ -1,0 +1,433 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Fashion Design API",
+    "description": "Fashion Design API manages and returns fashion designer’s data with CRUD operations",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/designer/": {
+      "get": {
+        "tags": [
+          "Designers"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Designers"
+        ],
+        "description": "Create a new fashion designer",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "Designer data",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Coco Chanel"
+                },
+                "birthYear": {
+                  "type": "number",
+                  "example": 1883
+                },
+                "nationality": {
+                  "type": "string",
+                  "example": "French"
+                },
+                "style": {
+                  "type": "string",
+                  "example": "Timeless elegance"
+                },
+                "famousFor": {
+                  "type": "string",
+                  "example": "The little black dress, Chanel No.5"
+                },
+                "activeYears": {
+                  "type": "string",
+                  "example": "1909–1971"
+                },
+                "website": {
+                  "type": "string",
+                  "example": "https://www.chanel.com"
+                },
+                "awards": {
+                  "type": "array",
+                  "example": [
+                    "Neiman Marcus Fashion Award (1957)"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/designer/{id}": {
+      "get": {
+        "tags": [
+          "Designers"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Designers"
+        ],
+        "description": "Update an existing designer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "Updated designer data",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Giorgio Armani"
+                },
+                "birthYear": {
+                  "type": "number",
+                  "example": 1934
+                },
+                "nationality": {
+                  "type": "string",
+                  "example": "Italian"
+                },
+                "style": {
+                  "type": "string",
+                  "example": "Luxury menswear"
+                },
+                "famousFor": {
+                  "type": "string",
+                  "example": "Soft-shouldered suits"
+                },
+                "activeYears": {
+                  "type": "string",
+                  "example": "1975–present"
+                },
+                "website": {
+                  "type": "string",
+                  "example": "https://www.armani.com"
+                },
+                "awards": {
+                  "type": "array",
+                  "example": [
+                    "CFDA International Award (1983)"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Designers"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/collections/": {
+      "get": {
+        "tags": [
+          "Collections"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Collections"
+        ],
+        "description": "Create a new fashion collection",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "Collection data",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "example": "Eternal Elegance"
+                },
+                "season": {
+                  "type": "string",
+                  "example": "Spring"
+                },
+                "year": {
+                  "type": "number",
+                  "example": 2025
+                },
+                "designer": {
+                  "type": "string",
+                  "example": "Alexander McQueen"
+                },
+                "theme": {
+                  "type": "string",
+                  "example": "Minimalist luxury"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "A refined collection showcasing clean silhouettes and pastel tones."
+                },
+                "launchDate": {
+                  "type": "string",
+                  "example": "2025-03-15"
+                },
+                "numberOfPieces": {
+                  "type": "number",
+                  "example": 24
+                },
+                "status": {
+                  "type": "string",
+                  "example": "upcoming"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/collections/{id}": {
+      "get": {
+        "tags": [
+          "Collections"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Collections"
+        ],
+        "description": "Update an existing fashion collection",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "Updated collection data",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "example": "Urban Edge"
+                },
+                "season": {
+                  "type": "string",
+                  "example": "Summer"
+                },
+                "year": {
+                  "type": "number",
+                  "example": 2025
+                },
+                "designer": {
+                  "type": "string",
+                  "example": "Virgil Abloh"
+                },
+                "theme": {
+                  "type": "string",
+                  "example": "Streetwear fusion"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "High-fashion tailoring mixed with street-inspired looks."
+                },
+                "launchDate": {
+                  "type": "string",
+                  "example": "2025-06-10"
+                },
+                "numberOfPieces": {
+                  "type": "number",
+                  "example": 30
+                },
+                "status": {
+                  "type": "string",
+                  "example": "upcoming"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Collections"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}
