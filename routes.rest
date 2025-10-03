@@ -1,0 +1,39 @@
+### get all collections
+GET http://localhost:3000/collections
+
+### get a specific collection by ID
+GET http://localhost:3000/collections/68df3ddab4ad52ce056ad464
+
+### create a new collection
+POST http://localhost:3000/collections HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "Midnight Bloom",
+  "season": "Fall",
+  "year": 2025,
+  "designer": "Rodarte",
+  "theme": "Gothic botanical",
+  "description": "A moody collection exploring nocturnal flora using velvet textures and metallic accents.",
+  "launchDate": "2025-10-02",
+  "numberOfPieces": 10,
+  "status": "active"
+}
+
+### update an existing collection by ID
+PUT http://localhost:3000/collections/68df3ddab4ad52ce056ad464 HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "Midnight Bloom Updated",
+  "season": "Fall",
+  "year": 2025,
+  "designer": "Alexander McQueen",
+  "theme": "Gothic botanical with a modern twist",
+  "description": "An updated moody collection exploring nocturnal flora using velvet textures and metallic accents.",
+  "launchDate": "2025-10-15",
+  "status": "upcoming"
+}
+
+### delete a collection by ID
+DELETE http://localhost:3000/collections/68df3ddab4ad52ce056ad464
