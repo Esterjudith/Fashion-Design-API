@@ -5,7 +5,7 @@
     "description": "Fashion Design API manages and returns fashion designer’s data with CRUD operations",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "fashion-design-api.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
