@@ -428,6 +428,228 @@
           }
         }
       }
+    },
+    "/brands/": {
+      "get": {
+        "tags": [
+          "Brands"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Brands"
+        ],
+        "description": "Create a new fashion brand",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "Brand data",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Balenciaga"
+                },
+                "founder": {
+                  "type": "string",
+                  "example": "Cristóbal Balenciaga"
+                },
+                "foundedYear": {
+                  "type": "number",
+                  "example": 1919
+                },
+                "headquarters": {
+                  "type": "string",
+                  "example": "Paris, France"
+                },
+                "specialization": {
+                  "type": "string",
+                  "example": "Techwear and avant-garde fashion"
+                },
+                "currentCreativeDirector": {
+                  "type": "string",
+                  "example": "Demna Gvasalia"
+                },
+                "website": {
+                  "type": "string",
+                  "example": "https://www.balenciaga.com"
+                },
+                "notableCollections": {
+                  "type": "array",
+                  "example": [
+                    "Digital Dreams"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "slogan": {
+                  "type": "string",
+                  "example": "Defying convention through design."
+                },
+                "status": {
+                  "type": "string",
+                  "example": "active"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/brands/{id}": {
+      "get": {
+        "tags": [
+          "Brands"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Brands"
+        ],
+        "description": "Update an existing brand by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Brand ID"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "Updated brand data",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Balenciaga"
+                },
+                "founder": {
+                  "type": "string",
+                  "example": "Cristóbal Balenciaga"
+                },
+                "foundedYear": {
+                  "type": "number",
+                  "example": 1919
+                },
+                "headquarters": {
+                  "type": "string",
+                  "example": "Paris, France"
+                },
+                "specialization": {
+                  "type": "string",
+                  "example": "Luxury fashion and accessories"
+                },
+                "currentCreativeDirector": {
+                  "type": "string",
+                  "example": "Demna Gvasalia"
+                },
+                "website": {
+                  "type": "string",
+                  "example": "https://www.balenciaga.com"
+                },
+                "notableCollections": {
+                  "type": "array",
+                  "example": [
+                    "Digital Dreams"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "slogan": {
+                  "type": "string",
+                  "example": "Fashion without boundaries."
+                },
+                "status": {
+                  "type": "string",
+                  "example": "active"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Brands"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
     }
   }
 }

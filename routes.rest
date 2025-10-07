@@ -1,3 +1,5 @@
+# Collections Endpoints
+
 ### get all collections
 GET http://localhost:3000/collections
 
@@ -38,3 +40,49 @@ Content-Type: application/json
 ### delete a collection by ID
 DELETE http://localhost:3000/collections/68df3ddab4ad52ce056ad464
 
+
+
+# Brands Endpoints
+
+### get all brands
+GET http://localhost:3000/brands
+
+### get a specific brand by ID
+GET http://localhost:3000/brands/68e44b26dfec2396385db683
+
+### create a new brand
+POST http://localhost:3000/brands HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Louis Vuitton",
+  "founder": "Louis Vuitton",
+  "foundedYear": 1854,
+  "headquarters": "Paris, France",
+  "specialization": "Luxury fashion, leather goods, accessories",
+  "currentCreativeDirector": "Pharrell Williams",
+  "website": "https://www.louisvuitton.com",
+  "notableCollections": ["LV Monogram", "Urban Edge"],
+  "slogan": "L’Art du Voyage",
+  "status": "active"
+}
+
+### update an existing brand by ID
+PUT http://localhost:3000/brands/68e44b26dfec2396385db683 HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Louis Vuitton Updated",
+  "founder": "Louis Vuitton",
+  "foundedYear": 1854,
+  "headquarters": "Paris, France",
+  "specialization": "Luxury fashion, leather goods, accessories",
+  "currentCreativeDirector": "Pharrell Williams",
+  "website": "https://www.louisvuitton.com",
+  "notableCollections": ["LV Monogram", "Urban Edge"],
+  "slogan": "L’Art du Voyage",
+  "status": "active"
+}
+
+### delete a brand by ID
+DELETE http://localhost:3000/brands/68e44b93dfec2396385db68b

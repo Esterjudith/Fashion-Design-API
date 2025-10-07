@@ -1,5 +1,4 @@
 const { Collection } = require('../models/collectionsModel');
-// const { ObjectId } = require('mongodb').ObjectId;
 
 // Get all collections in the database
 const getAllCollections = async (req, res) => {
