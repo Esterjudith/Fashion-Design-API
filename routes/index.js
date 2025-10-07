@@ -9,5 +9,7 @@ router.use('/designer', require('./designerRoute'))
 
 router.use('/collections', require('./collectionsRoutes'));
 
+router.use('/brands', require('./brandsRoute'));
+
 
 module.exports = router;
