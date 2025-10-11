@@ -86,3 +86,37 @@ Content-Type: application/json
 
 ### delete a brand by ID
 DELETE http://localhost:3000/brands/68e44b93dfec2396385db68b
+
+
+### Get all shows
+GET http://localhost:3000/shows
+
+### Post a new show
+POST http://localhost:3000/shows HTTP/1.1
+Content-Type: application/json
+
+ {
+  "collectionId": "68e1ae890a9ff25157e9e0ea",
+  "location": "Paris Fashion Week",
+  "date": "2024-03-15",
+  "venue": "Louvre Museum",
+  "specialGuests": ["Naomi Campbell", "Kendall Jenner"]
+ }
+
+### get a specific show by ID
+GET http://localhost:3000/shows/68e9f26230d5e16cb7cc8994
+
+### Update a specific show by ID
+PUT http://localhost:3000/shows/68e9f26230d5e16cb7cc8994 HTTP/1.1
+Content-Type: application/json
+
+ {
+  "collectionId": "68e1ae890a9ff25157e9e0ea",
+  "location": "Milan Fashion Week",
+  "date": "2024-04-10",
+  "venue": "Duomo di Milano",
+  "specialGuests": ["Gigi Hadid", "Bella Hadid"]
+ }
+
+### Delete a specific show by ID
+DELETE http://localhost:3000/shows/68e9fb4446f46b533f601d20
