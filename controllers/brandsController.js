@@ -17,7 +17,7 @@ const getBrandById = async (req, res) => {
   try {
     const brand = await Brand.findById(req.params.id);
     if (!brand) {
-      return res.status(404).json({ success: false, message: 'Brand not found' });
+      return res.status(404).json({ success: false, message: 'No Brand found by that ID' });
     }
     res.status(200).json(brand);
   } catch (error) {
@@ -92,7 +92,7 @@ const updateBrand = async (req, res) => {
       runValidators: true
     });
     if (!updatedBrand) {
-      return res.status(404).json({ success: false, message: 'Brand not found' });
+      return res.status(404).json({ success: false, message: 'No Brand found by that ID' });
     }
     res.status(200).json(updatedBrand);
   } catch (error) {
@@ -106,7 +106,7 @@ const deleteBrand = async (req, res) => {
   try {
     const deletedBrand = await Brand.findByIdAndDelete(req.params.id);
     if (!deletedBrand) {
-      return res.status(404).json({ success: false, message: 'Brand not found' });
+      return res.status(404).json({ success: false, message: 'No Brand found by that ID' });
     }
     res.status(200).json({ success: true, message: 'Brand deleted successfully' });
   } catch (error) {

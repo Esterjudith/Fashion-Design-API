@@ -27,7 +27,7 @@ const getCollectionById = async (req, res) => {
     try {
         const collection = await Collection.findById(req.params.id);
         if (!collection) {
-          return res.status(404).json({ success: false, message: 'Collection not found' });
+          return res.status(404).json({ success: false, message: 'No Collection found by that ID' });
         }
         // Format launchDate to 'YYYY-MM-DD'
         const obj = collection.toObject();
@@ -111,7 +111,7 @@ const updateCollection = async (req, res) => {
         );
 
         if (!updatedCollection) {
-          return res.status(404).json({ success: false, message: 'Collection not found' });
+          return res.status(404).json({ success: false, message: 'No Collection found by that ID' });
         }
         // Format launchDate to 'YYYY-MM-DD'
         const obj = updatedCollection.toObject();
@@ -132,7 +132,7 @@ const deleteCollection = async (req, res) => {
     try {
         const deletedCollection = await Collection.findByIdAndDelete(req.params.id);
         if (!deletedCollection) {
-          return res.status(404).json({ success: false, message: 'Collection not found' });
+          return res.status(404).json({ success: false, message: 'No Collection found by that ID' });
         }
         res.status(200).json({ success: true, message: 'Collection deleted successfully' });
     } catch (error) {
