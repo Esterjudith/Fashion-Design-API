@@ -45,6 +45,7 @@ const createShows = async(req, res) => {
 }
 
 const getshowById = async (req, res) => {
+    // #swagger.tags = ['Shows']
     const { id } = req.params;
 
     try {
@@ -86,6 +87,7 @@ const updateShow = async(req, res) => {
 }
 
 const deleteShow = async (req, res) => {
+    // #swagger.tags = ['Shows']
     const { id } = req.params;
     try {
         const show = await Show.findByIdAndDelete(id);
