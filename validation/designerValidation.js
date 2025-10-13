@@ -8,9 +8,9 @@ const designerRules = [
         .withMessage('Designer name must be at least 2 characters, e.g. Li'),
 
     body('birthYear')
-        .notEmpty()
-        .isInt({ min: 1800, max: new Date().getFullYear() })
-        .withMessage('Enter a valid birth year.'),
+        .notEmpty()    
+        .withMessage('Enter a valid birth year.')
+        .isInt({ min: 1800, max: new Date().getFullYear() }),
         
     body('nationality')
         .trim()
