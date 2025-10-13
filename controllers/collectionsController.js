@@ -4,20 +4,10 @@ const { Collection } = require('../models/collectionsModel');
 const getAllCollections = async (req, res) => {
   // #swagger.tags = ['Collections']
     try {
-        const collections = await Collection.find();
-        // Format launchDate to 'YYYY-MM-DD'
-        const formatted = collections.map(col => {
-        const obj = col.toObject();
-        if (obj.launchDate) {
-            obj.launchDate = new Date(obj.launchDate).toISOString().split('T')[0];
-        }
-        // delete __v fields
-        delete obj.__v;
-        return obj;
-        });
-        res.status(200).json(formatted);
+        const collections = await Collection.find();      
+        res.status(200).json(collections);
     } catch (error) {
-        res.status(500).json({ success: false, message: error.message });
+        res.status(500).json({ message: error.message });
     }
 };
 
@@ -67,17 +57,10 @@ const createCollection = async (req, res) => {
   */
     try {
         const collection = new Collection(req.body);
-        await collection.save();
-        // Format launchDate to 'YYYY-MM-DD'
-        const obj = collection.toObject();
-        if (obj.launchDate) {
-            obj.launchDate = new Date(obj.launchDate).toISOString().split('T')[0];
-        }
-        // delete __v fields
-        delete obj.__v;
-        res.status(201).json(obj);
+        await collection.save();        
+        res.status(201).json(collection);
     } catch (error) {
-        res.status(500).json({ success: false, message: error.message });
+        res.status(500).json({ message: error.message });
     }
 };
 
@@ -103,26 +86,20 @@ const updateCollection = async (req, res) => {
       }
     }
   */
+  const { id } = req.params;
     try {
-        const updatedCollection = await Collection.findByIdAndUpdate(
-          req.params.id,
-          { ...req.body, updatedAt: new Date() },
-          { new: true, runValidators: true }
-        );
-
-        if (!updatedCollection) {
+      const collection = await Collection.findByIdAndUpdate(id, req.body, {
+        new: true, 
+        runValidators: true
+      });
+              
+      if (!collection) {
           return res.status(404).json({ success: false, message: 'No Collection found by that ID' });
         }
-        // Format launchDate to 'YYYY-MM-DD'
-        const obj = updatedCollection.toObject();
-        if (obj.launchDate) {
-            obj.launchDate = new Date(obj.launchDate).toISOString().split('T')[0];
-        }
-        // delete __v fields
-        delete obj.__v;
-        res.status(200).json(obj);
+    
+      res.status(200).json({message: 'Collection succesfully updated'});
     } catch (error) {
-        res.status(500).json({ success: false, message: error.message });
+        res.status(500).json({message: error.message });
     }
 };
 
@@ -132,7 +109,7 @@ const deleteCollection = async (req, res) => {
     try {
         const deletedCollection = await Collection.findByIdAndDelete(req.params.id);
         if (!deletedCollection) {
-          return res.status(404).json({ success: false, message: 'No Collection found by that ID' });
+          return res.status(404).json({ message: 'No Collection found by that ID' });
         }
         res.status(200).json({ success: true, message: 'Collection deleted successfully' });
     } catch (error) {

@@ -6,7 +6,7 @@ router.use('/', require('./swaggger'));
 
 router.get('/', indexController.getHome);
 
-router.use('/designer', require('./designerRoute'));
+router.use('/designers', require('./designerRoute'));
 
 router.use('/collections', require('./collectionsRoutes'));
 
