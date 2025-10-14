@@ -61,24 +61,6 @@ passport.deserializeUser((obj, done) => {
     done(null, obj);
 });
 
-// // Home route
-// app.get('/', (req, res) => {
-//     if (req.isAuthenticated()) {
-//         res.send(`Logged in as ${req.user.displayName || req.user.username}`);
-//     } else {
-//         res.send('Logged out');
-//     }
-// });
-
-// // GitHub callback (after successful login)
-// app.get(
-//     '/github/callback',
-//     passport.authenticate('github', { failureRedirect: '/api-docs' }),
-//     (req, res) => {
-//         res.redirect('/');
-//     }
-// );
-
 // Connect to the database and start the server
 connectDB();
 
