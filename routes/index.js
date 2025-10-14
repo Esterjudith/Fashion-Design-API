@@ -17,7 +17,14 @@ router.use('/shows', require('./showsRoute'));
 
 
 // GitHub authentication route
-router.get('/login', passport.authenticate('github'), (req, res) => {});
+// router.get('/login', passport.authenticate('github'), (req, res) => {});
+router.get('/login', (req, res, next) => {
+  console.log("Redirecting to GitHub with client_id:", process.env.GITHUB_CLIENT_ID);
+  console.log("Using callback URL:", process.env.GITHUB_CALLBACK_URL);
+
+  // hand off to passport
+  passport.authenticate('github')(req, res, next);
+});
 
 // GitHub callback (after successful login)
 router.get(
