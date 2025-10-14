@@ -2,20 +2,26 @@ const express = require("express");
 const supertest = require("supertest");
 
 // Mock both models (Show + Collection)
-jest.mock("../models/showsModel", () => ({
-  Show: {
-    find: jest.fn(),
-    findById: jest.fn(),
-    findByIdAndUpdate: jest.fn(),
-    findByIdAndDelete: jest.fn(),
-    create: jest.fn(),
-    prototype: { save: jest.fn() }, // for new Show().save()
-  },
-}));
+jest.mock("../models/showsModel", () => {
+  const mShow = function (data) {
+    Object.assign(this, data);
+  };
+  mShow.prototype.save = jest.fn();
+
+  // Mock static methods
+  mShow.find = jest.fn();
+  mShow.findById = jest.fn((id) => ({
+    populate: jest.fn().mockResolvedValue(mShow.findById._mockReturnValue || null),
+  }));
+  mShow.findByIdAndUpdate = jest.fn();
+  mShow.findByIdAndDelete = jest.fn();
+  mShow.create = jest.fn();
+
+  return { Show: mShow };
+});
+
 jest.mock("../models/collectionsModel", () => ({
-  Collection: {
-    findById: jest.fn(),
-  },
+  Collection: { findById: jest.fn() },
 }));
 
 const { Show } = require("../models/showsModel");
@@ -97,25 +103,29 @@ describe("Shows API endpoints", () => {
 
   // ---------------- GET BY ID ----------------
   test("GET /shows/:id → 200 success", async () => {
-    const mockShow = { id: "1", location: "Paris FW" };
-    Show.findById.mockResolvedValue(mockShow);
+  const mockShow = { id: "1", location: "Paris FW" };
 
-    const res = await supertest(app).get("/shows/1");
-
-    expect(Show.findById).toHaveBeenCalledWith("1");
-    expect(res.status).toBe(200);
-    expect(res.body).toEqual(mockShow);
+  Show.findById.mockReturnValue({
+    populate: jest.fn().mockResolvedValue(mockShow),
   });
 
-  test("GET /shows/:id → 400 not found", async () => {
-    Show.findById.mockResolvedValue(null);
+  const res = await supertest(app).get("/shows/1");
 
-    const res = await supertest(app).get("/shows/doesnotexist");
+  expect(Show.findById).toHaveBeenCalledWith("1");
+  expect(res.status).toBe(200);
+  expect(res.body).toEqual(mockShow);
+});
 
-    expect(res.status).toBe(400);
-    expect(res.body).toHaveProperty("message", "Show not found");
+test("GET /shows/:id → 400 not found", async () => {
+  Show.findById.mockReturnValue({
+    populate: jest.fn().mockResolvedValue(null),
   });
 
+  const res = await supertest(app).get("/shows/doesnotexist");
+
+  expect(res.status).toBe(400);
+  expect(res.body).toHaveProperty("message", "Show not found");
+});
   // ---------------- UPDATE ----------------
   test("PUT /shows/:id → 200 success", async () => {
     Show.findByIdAndUpdate.mockResolvedValue({ id: "1", location: "Updated" });
