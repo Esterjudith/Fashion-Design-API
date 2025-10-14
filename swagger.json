@@ -21,7 +21,7 @@
         }
       }
     },
-    "/designer/": {
+    "/designers/": {
       "get": {
         "tags": [
           "Designers"
@@ -101,7 +101,7 @@
         }
       }
     },
-    "/designer/{id}": {
+    "/designers/{id}": {
       "get": {
         "tags": [
           "Designers"

@@ -1,3 +1,8 @@
+### Designer get all designers
+GET http://localhost:3000/designers
+
+
+
 # Collections Endpoints
 
 ### get all collections
