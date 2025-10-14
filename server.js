@@ -70,7 +70,7 @@ passport.use(
         }
     )
 );
-
+console.log("GitHub callback URL:", process.env.GITHUB_CALLBACK_URL);
 // Serialize user into the session (store minimal data in session in real apps)
 passport.serializeUser((user, done) => {
     done(null, user);
